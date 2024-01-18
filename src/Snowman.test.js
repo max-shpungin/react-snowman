@@ -12,14 +12,14 @@ import img6 from "./6.png";
 
 it("renders without crashing", function (){
   render (<Snowman
-      words={"apple"}
+      words={["apple"]}
       images={[img0, img1, img2, img3, img4, img5, img6]}
       maxWrong={6}/>)
 })
 
 it("only allows 6 wrong guesses", function(){
   const { container, debug } = render (<Snowman
-    words={"apple"}
+    words={["apple"]}
     images={[img0, img1, img2, img3, img4, img5, img6]}
     maxWrong={6}/>);
 
@@ -45,7 +45,7 @@ it("only allows 6 wrong guesses", function(){
 
 it("only allows 2 wrong guesses", function(){
   const { container, debug } = render (<Snowman
-    words={"apple"}
+    words={["apple"]}
     images={[img0, img1, img2, img3, img4, img5, img6]}
     maxWrong={2}/>);
 
@@ -64,7 +64,7 @@ it("only allows 2 wrong guesses", function(){
 it("it shows the correct image after 1 wrong guess", function(){
 
   const { container, debug } = render (<Snowman
-    words={"apple"}
+    words={["apple"]}
     images={[img0, img1, img2, img3, img4, img5, img6]}
     maxWrong={2}/>);
 
@@ -77,9 +77,27 @@ it("it shows the correct image after 1 wrong guess", function(){
 
 });
 
+it("does not change image on correct guess", function(){
+  const { container, debug } = render (<Snowman
+    words={["apple"]}
+    images={[img0, img1, img2, img3, img4, img5, img6]}
+    maxWrong={2}/>);
+
+  expect(container.querySelector('img')).toContainHTML("0.png");
+
+  const buttons = Array.from(container.querySelectorAll("button"));
+  debug(buttons[0])
+  fireEvent.click(buttons[0]);
+
+  expect(container.querySelector('img')).toContainHTML("0.png");
+  expect(container.querySelector('img')).not.toContainHTML("1.png");
+
+
+})
+
 it("should match the snapshot of 6 wrong guesses", function(){
   const { container, debug } = render (<Snowman
-    words={"apple"}
+    words={["apple"]}
     images={[img0, img1, img2, img3, img4, img5, img6]}
     maxWrong={6}/>);
 

@@ -17,6 +17,10 @@ exports[`should match the snapshot of 6 wrong guesses 1`] = `
       class="Snowman-word"
     >
       _
+      _
+      _
+      _
+      _
     </p>
     <p
       class="Snowman-gameResult"
