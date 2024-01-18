@@ -36,6 +36,17 @@ function Snowman({
   const [answer, setAnswer] = useState(randomWord(words));
   //WHY IS THIS STATE?
 
+  /**restart: restart the game with new random word.
+   *  Reset guessed list and number of wrong guesses.
+   */
+  //don't need callback for setGuessed
+  function restart(evt){
+    setNWrong(0);
+    setGuessedLetters(() => new Set());
+    setAnswer(randomWord(words));
+
+  }
+
   /** guessedWord: show current-state of word:
    if guessed letters are {a,p,e}, show "app_e" for "apple"
    */
@@ -54,10 +65,10 @@ function Snowman({
 
     setGuessedLetters(g => {
       const newGuessed = new Set(g);
-      newGuessed.add(ltr); //n
+      newGuessed.add(ltr);
       return newGuessed;
     });
-              //0 => 0 + 1
+
     setNWrong(n => n + (answer.includes(ltr) ? 0 : 1));
   }
 
@@ -65,6 +76,7 @@ function Snowman({
   function generateButtons() {
     return "abcdefghijklmnopqrstuvwxyz".split("").map(ltr => (
         <button
+            className="Snowman-letters"
             key={ltr}
             value={ltr}
             onClick={handleGuess}
@@ -74,7 +86,7 @@ function Snowman({
         </button>
     ));
   }
-
+  //change alt to add description like number wrong:
   return (
       <div className="Snowman">
         <img src={(images)[nWrong]} alt={nWrong} />
@@ -86,6 +98,7 @@ function Snowman({
         {nWrong >= maxWrong &&
           <p className="Snowman-gameResult">You Lose.</p>
         }
+        <button className="Snowman-restart" onClick={restart}>Restart</button>
       </div>
   );
 }

@@ -23,6 +23,11 @@ exports[`should match the snapshot of 6 wrong guesses 1`] = `
     >
       You Lose.
     </p>
+    <button
+      class="Snowman-restart"
+    >
+      Restart
+    </button>
   </div>
 </div>
 `;
