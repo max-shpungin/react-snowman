@@ -25,7 +25,7 @@ it("only allows 6 wrong guesses", function(){
     maxWrong={6}/>);
 
   const buttons = Array.from(container.querySelectorAll("button"));
-  debug(buttons)
+
 
     //make 6 guesses
     fireEvent.click(buttons[1])
@@ -35,7 +35,28 @@ it("only allows 6 wrong guesses", function(){
     fireEvent.click(buttons[6])
     fireEvent.click(buttons[7])
 
-  expect("You lose").toBeInTheDocument();
+  expect(container.querySelector('.Snowman-gameResult')).toContainHTML('You Lose.');
   expect(container.querySelector("button")).not.toBeInTheDocument();
 
+})
+
+it("should match the snapshot of 6 wrong guesses", function(){
+  //make 6 clicks
+  const { container, debug } = render (<Snowman
+    words={ENGLISH_WORDS[0]}
+    images={[img0, img1, img2, img3, img4, img5, img6]}
+    maxWrong={6}/>);
+
+  const buttons = Array.from(container.querySelectorAll("button"));
+
+    //make 6 guesses
+    fireEvent.click(buttons[1])
+    fireEvent.click(buttons[2])
+    fireEvent.click(buttons[3])
+    fireEvent.click(buttons[5])
+    fireEvent.click(buttons[6])
+    fireEvent.click(buttons[7])
+    //FIXME: WHAT ARE WE ACTUALLY ASKING FOR HERE?
+
+  expect(container).toMatchSnapshot();
 })

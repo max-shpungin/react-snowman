@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the snapshot of 6 wrong guesses 1`] = `
+<div>
+  <div
+    class="Snowman"
+  >
+    <img
+      alt="6"
+      src="6.png"
+    />
+    <p>
+      Number wrong: 
+      6
+    </p>
+    <p
+      class="Snowman-word"
+    >
+      _
+    </p>
+    <p
+      class="Snowman-gameResult"
+    >
+      You Lose.
+    </p>
+  </div>
+</div>
+`;
