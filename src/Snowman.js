@@ -9,6 +9,7 @@ import img4 from "./4.png";
 import img5 from "./5.png";
 import img6 from "./6.png";
 
+import { randomWord, ENGLISH_WORDS } from './words'
 
 /** Snowman game: plays hangman-style game with a melting snowman.
  *
@@ -25,14 +26,14 @@ import img6 from "./6.png";
 
 function Snowman({
       images=[img0, img1, img2, img3, img4, img5, img6],
-      words=["apple"],
+      words=ENGLISH_WORDS,
       maxWrong=6,
     }) {
   /** by default, allow 6 guesses and use provided gallows images. */
 
   const [nWrong, setNWrong] = useState(0);
   const [guessedLetters, setGuessedLetters] = useState(() => new Set());
-  const [answer, setAnswer] = useState((words)[0]);
+  const [answer, setAnswer] = useState(randomWord(words));
   //WHY IS THIS STATE?
 
   /** guessedWord: show current-state of word:
