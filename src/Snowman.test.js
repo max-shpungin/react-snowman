@@ -61,6 +61,22 @@ it("only allows 2 wrong guesses", function(){
 
 });
 
+it("it shows the correct image after 1 wrong guess", function(){
+
+  const { container, debug } = render (<Snowman
+    words={"apple"}
+    images={[img0, img1, img2, img3, img4, img5, img6]}
+    maxWrong={2}/>);
+
+    expect(container.querySelector('img')).toContainHTML('0.png');
+    const buttons = Array.from(container.querySelectorAll("button"));
+    fireEvent.click(buttons[1]);
+    //expect(container.querySelector('img')).toContainHTML('3.png');
+    expect(container.querySelector('img')).toContainHTML('alt="1"');
+    //look me up!?!?
+
+});
+
 it("should match the snapshot of 6 wrong guesses", function(){
   const { container, debug } = render (<Snowman
     words={"apple"}
